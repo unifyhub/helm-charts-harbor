@@ -14,8 +14,20 @@ helm:
   chart: .
   releaseName: harbor
   values:
+    expose:
+      tls:
+        certSource: none
+      ingress:
+        enabled: true
+        hosts:
+          core: harbor.krp.unifyhub.dev
+        className: "traefik"
+        annotations:
+          traefik.ingress.kubernetes.io/router.tls: "true" # Enable TLS for Traefik router
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          traefik.http.middlewares.limit.buffering.memRequestBodyBytes: 0
     externalURL: https://harbor.krp.unifyhub.dev
-    persistent:
+    persistence:
       persistentVolumeClaim:
         registry:
           storageClass: ""
@@ -43,18 +55,6 @@ helm:
           subPath: ""
           accessMode: ReadWriteOnce
           size: 20Gi
-    expose:
-      tls:
-        certSource: none
-      ingress:
-        enabled: true
-        hosts:
-          core: harbor.krp.unifyhub.dev
-        className: "traefik"
-        annotations:
-          traefik.ingress.kubernetes.io/router.tls: "true" # Enable TLS for Traefik router
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          traefik.http.middlewares.limit.buffering.memRequestBodyBytes: 0
   correctDrift:
     enabled: true
     force: true
