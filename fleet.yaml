@@ -23,7 +23,7 @@ helm:
         className: "traefik"
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          traefik.ingress.kubernetes.io/router.middlewares: "harbor-limit-body-size@kubernetescrd"
+          traefik.http.middlewares.limit.buffering.memRequestBodyBytes: 0
   correctDrift:
     enabled: true
     force: true
