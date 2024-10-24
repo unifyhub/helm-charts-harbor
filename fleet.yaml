@@ -15,35 +15,35 @@ helm:
   releaseName: harbor
   values:
     externalURL: https://harbor.krp.unifyhub.dev
-    expose:
-      persistent:
-        persistentVolumeClaim:
-          registry:
-            storageClass: ""
-            subPath: ""
-            accessMode: ReadWriteOnce
-            size: 500Gi
-          jobservice:
-            jobLog:
-              storageClass: ""
-              subPath: ""
-              accessMode: ReadWriteOnce
-              size: 10Gi
-          database:
+    persistent:
+      persistentVolumeClaim:
+        registry:
+          storageClass: ""
+          subPath: ""
+          accessMode: ReadWriteOnce
+          size: 500Gi
+        jobservice:
+          jobLog:
             storageClass: ""
             subPath: ""
             accessMode: ReadWriteOnce
             size: 10Gi
-          redis:
-            storageClass: ""
-            subPath: ""
-            accessMode: ReadWriteOnce
-            size: 20Gi
-          trivy:
-            storageClass: ""
-            subPath: ""
-            accessMode: ReadWriteOnce
-            size: 20Gi
+        database:
+          storageClass: ""
+          subPath: ""
+          accessMode: ReadWriteOnce
+          size: 10Gi
+        redis:
+          storageClass: ""
+          subPath: ""
+          accessMode: ReadWriteOnce
+          size: 20Gi
+        trivy:
+          storageClass: ""
+          subPath: ""
+          accessMode: ReadWriteOnce
+          size: 20Gi
+    expose:
       tls:
         certSource: none
       ingress:
