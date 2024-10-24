@@ -60,15 +60,15 @@ helm:
 
     # Services
     portal:
-      replicas: 2
+      replicas: 1
     core:
-      replicas: 2
+      replicas: 1
     jobservice:
-      replicas: 2
+      replicas: 1
     registry:
-      replicas: 2
+      replicas: 1
     trivy:
-      replicas: 2
+      replicas: 1
       resources:
         requests:
           cpu: 200m
@@ -77,7 +77,7 @@ helm:
           cpu: 1
           memory: 1Gi
     exporter:
-      replicas: 2
+      replicas: 1
   correctDrift:
     enabled: true
     force: true
