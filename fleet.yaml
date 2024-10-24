@@ -16,12 +16,15 @@ helm:
   values:
     externalURL: https://harbor.krp.unifyhub.dev
     expose:
+      tls:
+        certSource: none
       ingress:
         enabled: true
         hosts:
           core: harbor.krp.unifyhub.dev
         className: "traefik"
         annotations:
+          traefik.ingress.kubernetes.io/router.tls: "true" # Enable TLS for Traefik router
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           traefik.http.middlewares.limit.buffering.memRequestBodyBytes: 0
   correctDrift:
