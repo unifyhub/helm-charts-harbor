@@ -5,4 +5,4 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   buffering:
-    maxRequestBodyBytes: 2000000  # Example: Limit request body size to 2MB
+    maxRequestBodyBytes: 0
