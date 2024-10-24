@@ -26,14 +26,16 @@ helm:
           traefik.ingress.kubernetes.io/router.tls: "true" # Enable TLS for Traefik router
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           traefik.http.middlewares.limit.buffering.memRequestBodyBytes: 0
+
     externalURL: https://harbor.krp.unifyhub.dev
+
     persistence:
       persistentVolumeClaim:
         registry:
           storageClass: ""
           subPath: ""
           accessMode: ReadWriteOnce
-          size: 500Gi
+          size: 150Gi
         jobservice:
           jobLog:
             storageClass: ""
@@ -55,6 +57,27 @@ helm:
           subPath: ""
           accessMode: ReadWriteOnce
           size: 20Gi
+
+    # Services
+    portal:
+      replicas: 2
+    core:
+      replicas: 2
+    jobservice:
+      replicas: 2
+    registry:
+      replicas: 2
+    trivy:
+      replicas: 2
+      resources:
+        requests:
+          cpu: 200m
+          memory: 512Mi
+        limits:
+          cpu: 1
+          memory: 1Gi
+    exporter:
+      replicas: 2
   correctDrift:
     enabled: true
     force: true
